@@ -5,7 +5,6 @@ def execute_sql_file(file_path):
     Executes an SQL query stored in a file.
 
     :param file_path: Path to the SQL file.
-    :param params: Parameters for the SQL query, if required.
     """
     db = PostgresDB()
     db.connect()
