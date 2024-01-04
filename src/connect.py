@@ -25,6 +25,7 @@ class PostgresDB:
         Initializes a new instance of the PostgresDB class, setting the conn attribute to None.
         """
         self.conn = None
+        self.cur = None
 
     def connect(self) -> None:
         """
@@ -43,15 +44,17 @@ class PostgresDB:
             params = config()
             print("Connecting to database...")
             self.conn = psycopg2.connect(**params)
-            cur = self.conn.cursor()
-            cur.execute('SELECT version()')
-            db_version = cur.fetchone()
+            self.cur = self.conn.cursor()
+            self.cur.execute('SELECT version()')
+            db_version = self.cur.fetchone()
             print(f'Connected to {db_version[0]}')
 
         except Exception as e:
             print(f"Error connecting to PostgreSQL DB: {e}")
             if self.conn is not None:
                 self.conn.close()
+
+        return self.cur
 
     def close(self) -> None:
         """
@@ -64,9 +67,9 @@ class PostgresDB:
             print("Connection closed.")
 
 
-# Usage
-if __name__ == "__main__":
-    db = PostgresDB()
-    db.connect()
-    # Some stuff TODO in DB here
-    db.close()
+# # Usage
+# if __name__ == "__main__":
+#     db = PostgresDB()
+#     db.connect()
+#     # Some stuff TODO in DB here
+#     db.close()
