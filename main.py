@@ -1,6 +1,6 @@
 from src.connect import PostgresDB
 
-def execute_sql_file(file_path, params=None):
+def execute_sql_file(file_path):
     """
     Executes an SQL query stored in a file.
 
@@ -24,8 +24,7 @@ def execute_sql_file(file_path, params=None):
 
 
 def main():
-    # Example usage
-    sql_file = 'queries/query_12.sql'
+    sql_file = 'queries/query_10.sql'
     execute_sql_file(sql_file)
 
 
