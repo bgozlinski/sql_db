@@ -65,11 +65,3 @@ class PostgresDB:
         if self.conn:
             self.conn.close()
             print("Connection closed.")
-
-
-# # Usage
-# if __name__ == "__main__":
-#     db = PostgresDB()
-#     db.connect()
-#     # Some stuff TODO in DB here
-#     db.close()
